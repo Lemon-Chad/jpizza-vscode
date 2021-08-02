@@ -40,8 +40,8 @@
 
                 {
                     "comment": "Functions",
-                    "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
-                    "name": "support.function.jpizza"
+                    "match": "[a-zA-Z_]\\w*(?=\\s*\\()",
+                    "name": "entity.name.function.jpizza"
                 },
 
                 {
@@ -62,7 +62,7 @@
                 },
 
                 {
-                    "begin": "\\b(var|bake)\\b",
+                    "begin": "\\b(var|bake|attr)\\b",
                     "beginCaptures": [{"name": "storage.type.jpizza"}],
                     "end": "=>",
                     "endCaptures": [{"name": "keyword.operator.assignment.jpizza"}],
@@ -70,6 +70,27 @@
                         {
                             "match": "[a-zA-Z_]\\w*",
                             "name": "variable.jpizza"
+                        },
+                        {
+                            "match": "#[a-zA-Z_]\\w*",
+                            "name": "punctuation.definition.comment.jpizza"
+                        }
+                    ]
+                },
+
+                {
+                    "begin": "\\bcal\\b",
+                    "beginCaptures": [{"name": "storage.type.jpizza"}],
+                    "end": "->",
+                    "endCaptures": [{"name": "keyword.operator.assignment.jpizza"}],
+                    "patterns": [
+                        {
+                            "match": "[a-zA-Z_]\\w*",
+                            "name": "variable.jpizza"
+                        },
+                        {
+                            "match": "#[a-zA-Z_]\\w*",
+                            "name": "punctuation.definition.comment.jpizza"
                         }
                     ]
                 },
@@ -131,10 +152,10 @@
         "func-args": {
             "patterns": [
                 {
-                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#(?!#)|=(?![=>]))|\\b)",
+                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#[a-zA-Z_]\\w*)|\\b)",
                     "beginCaptures": {
                         "1": {"name": "variable.parameter.jpizza"},
-                        "2": {"name": "keyword.operator.jpizza"}
+                        "2": {"name": "punctuation.definition.comment.jpizza"}
                     },
                     "end": "(?=[,>])",
                     "patterns": [
@@ -155,6 +176,7 @@
                     "patterns": [
                         {"include": "#space"},
                         {"include": "#comments"},
+                        {"include": "#root"},
                         {
                             "begin": "(?=\\w+\\s*:(?!:)|\\b(?!(?:continue|break|return|true|false|null)\\b)[a-zA-Z_]\\w*\\s*[,}]|\\.{2})",
                             "end": "(?=\\})",
@@ -243,8 +265,29 @@
 
                 {
                     "comment": "Flow control keywords",
-                    "match": "\\b(else|for|if|elif|return|import|break|continue|while|switch|match|case)\\b",
+                    "match": "\\b(this|recipe|else|for|if|elif|return|import|break|continue|while|switch|match|case)\\b",
                     "name": "keyword.control.jpizza"
+                },
+
+                {
+                    "comment": "Functions",
+                    "begin": "((\\s|^)!)|(\\b(fn|function|method|ingredients)\\b(\\s(async|bin)\\b)*)",
+                    "beginCaptures": [{"name": "keyword.control.jpizza"}],
+                    "end": "(?=(>|{|->))",
+                    "patterns": [
+                        {"include": "#space"},
+                        {"include": "#comments"},
+                        {
+                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9#,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
+                            "name": "entity.name.function.jpizza"
+                        },
+                        {"include": "#func-args"}
+                    ]
+                },
+
+                {
+                    "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
+                    "name": "entity.name.function.jpizza"
                 }
             ]
         },
@@ -282,7 +325,7 @@
         "string_escaped_char": {
             "patterns": [
                 {
-                    "match": "\\.",
+                    "match": "\\\\.",
                     "name": "constant.character.escape.jpizza"
                 }
             ]
