@@ -20,8 +20,7 @@
             "id": "jpizza",
             "aliases": ["JPizza2", "jpizza", "JPizza", "jpizza2"],
             "extensions": [
-                ".devp",
-                ".jbox"
+                ".devp"
             ],
             "configuration": "./language-configuration.json"
         }],

@@ -1,5 +1,5 @@
 {
-    "scopeName": "main.devp",
+    "scopeName": "src.devp",
     "name": "JPizza",
     "comment": "Just a modified version of the grammar of SPWN which is a modified version of the grammar of Golang",
     "fileTypes": [
