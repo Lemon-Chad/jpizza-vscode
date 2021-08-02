@@ -178,7 +178,7 @@
                         {"include": "#comments"},
                         {"include": "#root"},
                         {
-                            "begin": "(?=\\w+\\s*:(?!:)|\\b(?!(?:continue|break|return|true|false|null)\\b)[a-zA-Z_]\\w*\\s*[,}]|\\.{2})",
+                            "begin": "(?=\\w+\\s*:(?!:)|(\\s|^)(?!(?:continue|break|return|true|false|null)\\b)[a-zA-Z_]\\w*\\s*[,}]|\\.{2})",
                             "end": "(?=\\})",
                             "patterns": [
                                 {"include": "#space"},
