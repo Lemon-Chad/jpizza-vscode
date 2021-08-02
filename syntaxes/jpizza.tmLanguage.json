@@ -1,0 +1,292 @@
+{
+    "scopeName": "main.devp",
+    "name": "JPizza",
+    "comment": "Just a modified version of the grammar of SPWN which is a modified version of the grammar of Golang",
+    "fileTypes": [
+        "devp"
+    ],
+
+    "patterns": [
+        {"include": "#root"}
+    ],
+
+    "repository": {
+        "root": {
+            "patterns": [
+                {"include": "#comments"},
+                {
+                    "comment": "Double quoted string",
+                    "begin": "\"",
+                    "beginCaptures": [{"name": "punctuation.definition.string.begin.jpizza"}],
+                    "end": "\"",
+                    "endCaptures": [{"name": "punctuation.definition.string.end.jpiza"}],
+                    "name": "string.quoted.double.jpizza",
+                    "patterns": [
+                        {"include": "#string_escaped_char"}
+                    ]
+                },
+
+                {
+                    "comment": "Single quoted string",
+                    "begin": "'",
+                    "beginCaptures": [{"name": "punctuation.definition.string.begin.jpizza"}],
+                    "end": "'",
+                    "endCaptures": [{"name": "punctuation.definition.string.end.jpiza"}],
+                    "name": "string.quoted.single.jpizza",
+                    "patterns": [
+                        {"include": "#string_escaped_char"}
+                    ]
+                },
+
+                {
+                    "comment": "Functions",
+                    "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
+                    "name": "support.function.jpizza"
+                },
+
+                {
+                    "comment": "Methods",
+                    "match": "(?<=::)[a-zA-Z_]\\w*(?=\\s*\\()",
+                    "name": "entity.name.function.jpizza"
+                },
+
+                {
+                    "match": "\\b\\d+(\\.\\d+)?",
+                    "name": "constant.numeric.jpizza"
+                },
+
+                {
+                    "comment": "Constants",
+                    "match": "\\b(true|false|null)\\b",
+                    "name": "constant.language.jpizza"
+                },
+
+                {
+                    "begin": "\\b(var|bake)\\b",
+                    "beginCaptures": [{"name": "storage.type.jpizza"}],
+                    "end": "=>",
+                    "endCaptures": [{"name": "keyword.operator.assignment.jpizza"}],
+                    "patterns": [
+                        {
+                            "match": "[a-zA-Z_]\\w*",
+                            "name": "variable.jpizza"
+                        }
+                    ]
+                },
+
+                {
+                    "match": "(?<=::)[a-zA-Z_]\\w*",
+                    "name": "variable.property.jpizza"
+                },
+
+                {"include": "#keywords"},
+
+                {
+                    "comment": "Terminators",
+                    "match": ";",
+                    "name": "punctuation.terminator.jpizza"
+                },
+                
+                {"include": "#brackets"},
+                {"include": "#delimiters"},
+                {"include": "#operators"}
+            ]
+        },
+
+        "space": {
+            "patterns": [
+                {
+                    "match": "\\s+",
+                    "name": "text.jpizza"
+                },
+
+                {
+                    "comment": "What????",
+                    "match": "\\n$",
+                    "name": "text.jpizza"
+                }
+            ]
+        },
+
+        "comments": {
+            "patterns": [
+                {
+                    "comment": "Block comments",
+                    "begin": "<<",
+                    "end": "<<",
+                    "captures": [{"name": "punctuation.definition.comment.jpizza"}],
+                    "name": "comment.block.jpizza"
+                },
+
+                {
+                    "comment": "Line comments",
+                    "begin": "<>",
+                    "beginCaptures": [{"name": "punctuation.definition.comment.jpizza"}],
+                    "end": "($|;)",
+                    "name": "comment.line.jpizza"
+                }
+            ]
+        },
+
+        "func-args": {
+            "patterns": [
+                {
+                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#(?!#)|=(?![=>]))|\\b)",
+                    "beginCaptures": {
+                        "1": {"name": "variable.parameter.jpizza"},
+                        "2": {"name": "keyword.operator.jpizza"}
+                    },
+                    "end": "(?=[,>])",
+                    "patterns": [
+                        {"include": "#root"}
+                    ]
+                },
+                {"include": "#root"}
+            ]
+        },
+
+        "brackets": {
+            "patterns": [
+                {
+                    "begin": "\\{",
+                    "beginCaptures": [{"name": "punctuation.other.bracket.curly.begin.jpizza"}],
+                    "end": "\\}",
+                    "endCaptures": [{"name": "punctuation.other.bracket.curly.end.jpizza"}],
+                    "patterns": [
+                        {"include": "#space"},
+                        {"include": "#comments"},
+                        {
+                            "begin": "(?=\\w+\\s*:(?!:)|\\b(?!(?:continue|break|return|true|false|null)\\b)[a-zA-Z_]\\w*\\s*[,}]|\\.{2})",
+                            "end": "(?=\\})",
+                            "patterns": [
+                                {"include": "#space"},
+                                {"include": "#comments"},
+                                {
+                                    "begin": "(\\d)\\s*(:)(?!:)",
+                                    "beginCaptures": {
+                                        "1": {"name": "constant.numeric.jpizza"},
+                                        "2": {"name": "keyword.operator.jpizza"}
+                                    },
+                                    "end": ",|(?-\\})",
+                                    "endCaptures": [{"name": "punctuation.seperator.jpizza"}],
+                                    "patterns": [
+                                        {"include": "#root"}
+                                    ]
+                                },
+
+                                {
+                                    "begin": "[a-zA-Z_]\\w*",
+                                    "beginCaptures": [{"name": "variable.property.jpizza"}],
+                                    "end": ",|(?=\\})",
+                                    "endCaptures": [{"name": "punctuation.seperator.jpizza"}],
+                                    "patterns": [
+                                        {"include": "#root"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    "begin": "\\(",
+                    "beginCaptures": [{"name": "punctuation.other.bracket.round.begin.jpizza"}],
+                    "end": "\\)",
+                    "endCaptures": [{"name": "punctuation.other.bracket.round.end.jpizza"}],
+                    "patterns": [
+                        {"include": "#root"}
+                    ]
+                },
+
+                {
+                    "begin": "\\[",
+                    "beginCaptures": [{"name": "punctuation.other.bracket.square.begin.jpizza"}],
+                    "end": "\\]",
+                    "endCaptures": [{"name": "punctuation.other.bracket.square.end.jpizza"}],
+                    "patterns": [
+                        {"include": "#root"}
+                    ]
+                }
+            ]
+        },
+
+        "delimiters": {
+            "patterns": [
+                {
+                    "match": ",",
+                    "name": "punctuation.other.comma.spawn"
+                },
+
+                {
+                    "match": "\\.(?!\\.)",
+                    "name": "punctuation.other.period.jpizza"
+                }
+            ]
+        },
+
+        "keywords": {
+            "patterns": [
+                {
+                    "begin": "\\bfor\\b",
+                    "beginCaptures": [{"name": "keyword.jpizza"}],
+                    "end": "(->|<-)",
+                    "endCaptures": [{"name": "keyword.operator.jpizza"}],
+                    "patterns": [
+                        {"include": "#space"},
+                        {"include": "#comments"},
+                        {
+                            "match": "\\b[a-zA-Z_]\\w*\\b",
+                            "name": "variable.jpizza"
+                        }
+                    ]
+                },
+
+                {
+                    "comment": "Flow control keywords",
+                    "match": "\\b(else|for|if|elif|return|import|break|continue|while|switch|match|case)\\b",
+                    "name": "keyword.control.jpizza"
+                }
+            ]
+        },
+
+        "operators": {
+            "comment": "Yadda yadda idk order smthn like that",
+            "patterns": [
+                {
+                    "match": "(==|!=|<=|<|>)",
+                    "name": "keyword.operator.comparison.jpizza"
+                },
+                {
+                    "match": "(&|\\||!)",
+                    "name": "keyword.operator.logical.jpizza"
+                },
+                {
+                    "match": "(=>|\\+=|\\-=|\\*=|\/=|\\-\\-|\\+\\+)",
+                    "name": "keyword.operator.assignment.jpizza"
+                },
+                {
+                    "match": "(\\+|\\-|\\*|\/|%)",
+                    "name": "keyword.operator.arithmetic.jpizza"
+                },
+                {
+                    "match": "(<-|->)",
+                    "name": "keyword.operator.range.jpizza"
+                },
+                {
+                    "match": "::",
+                    "name": "keyword.operator.access.jpizza"
+                }
+            ]
+        },
+
+        "string_escaped_char": {
+            "patterns": [
+                {
+                    "match": "\\.",
+                    "name": "constant.character.escape.jpizza"
+                }
+            ]
+        }
+
+    }
+}
