@@ -7,3 +7,6 @@
 
 # 0.0.3
 * Added **CHANGELOG** and **README**
+
+# 0.0.4
+* EVEN MORE HIGHLIGHTING
