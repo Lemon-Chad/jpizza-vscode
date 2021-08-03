@@ -111,6 +111,12 @@
                 {"include": "#brackets"},
                 {"include": "#delimiters"},
                 {"include": "#operators"},
+                
+                {
+                    "begin": "#\\s*[a-zA-Z_0-9\\s]+",
+                    "beginCaptures": [{"name": "keyword.control.jpizza"}],
+                    "end": ";"
+                },
 
                 {
                     "match": "\\b[a-zA-Z_]\\w*\\b",
