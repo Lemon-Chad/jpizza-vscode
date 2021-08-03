@@ -64,7 +64,7 @@
                 {
                     "begin": "\\b(var|bake|attr)\\b",
                     "beginCaptures": [{"name": "storage.type.jpizza"}],
-                    "end": "=>",
+                    "end": "=>|(?=;)",
                     "endCaptures": [{"name": "keyword.operator.assignment.jpizza"}],
                     "patterns": [
                         {
