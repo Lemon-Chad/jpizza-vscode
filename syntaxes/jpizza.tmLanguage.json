@@ -110,7 +110,12 @@
                 
                 {"include": "#brackets"},
                 {"include": "#delimiters"},
-                {"include": "#operators"}
+                {"include": "#operators"},
+
+                {
+                    "match": "\\b[a-zA-Z_]\\w*\\b",
+                    "name": "variable.jpizza"
+                }
             ]
         },
 
@@ -154,7 +159,7 @@
                 {
                     "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#[a-zA-Z_]\\w*)|\\b)",
                     "beginCaptures": {
-                        "1": {"name": "variable.parameter.jpizza"},
+                        "1": {"name": "variable.jpizza"},
                         "2": {"name": "punctuation.definition.comment.jpizza"}
                     },
                     "end": "(?=[,>])",
@@ -271,7 +276,7 @@
 
                 {
                     "comment": "Functions",
-                    "begin": "((\\s|^)!)|(\\b(fn|function|method|ingredients)\\b(\\s(async|bin)\\b)*)",
+                    "begin": "((\\s|^)!\\s*(?=(<|->|{)))|(\\b(fn|function|method|ingredients)\\b(\\s(async|bin)\\b)*)",
                     "beginCaptures": [{"name": "keyword.control.jpizza"}],
                     "end": "(?=(>|{|->))",
                     "patterns": [
@@ -296,7 +301,7 @@
             "comment": "Yadda yadda idk order smthn like that",
             "patterns": [
                 {
-                    "match": "(==|!=|<=|<|>)",
+                    "match": "(==|!=|<=|>=|<|>)",
                     "name": "keyword.operator.comparison.jpizza"
                 },
                 {
