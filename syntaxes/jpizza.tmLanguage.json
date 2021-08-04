@@ -163,7 +163,7 @@
         "func-args": {
             "patterns": [
                 {
-                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#[a-zA-Z_]\\w*)|\\b)",
+                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#\\s*[a-zA-Z_]\\w*)|(\\s*))",
                     "beginCaptures": {
                         "1": {"name": "variable.jpizza"},
                         "2": {"name": "punctuation.definition.comment.jpizza"}
@@ -289,10 +289,11 @@
                         {"include": "#space"},
                         {"include": "#comments"},
                         {
-                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9#,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
+                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<.+>)|(?=\\s*->)|(?=\\s*{))",
                             "name": "entity.name.function.jpizza"
                         },
-                        {"include": "#func-args"}
+                        {"include": "#func-args"},
+                        {"include": "#root"}
                     ]
                 },
 
@@ -315,7 +316,7 @@
                     "name": "keyword.operator.logical.jpizza"
                 },
                 {
-                    "match": "(=>|\\+=|\\-=|\\*=|\/=|\\-\\-|\\+\\+)",
+                    "match": "(=|=>|\\+=|\\-=|\\*=|\/=|\\-\\-|\\+\\+)",
                     "name": "keyword.operator.assignment.jpizza"
                 },
                 {
