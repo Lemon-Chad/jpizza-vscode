@@ -10,3 +10,7 @@
 
 # 0.0.4
 * EVEN MORE HIGHLIGHTING
+
+# 0.0.45
+* Bug fixes
+* Highlight support for statically typed functions
