@@ -14,3 +14,6 @@
 # 0.0.45
 * Bug fixes
 * Highlight support for statically typed functions
+
+# 0.0.46
+* Updated **README**
