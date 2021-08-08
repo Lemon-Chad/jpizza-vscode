@@ -20,3 +20,8 @@
 
 # 0.0.47
 * Updated **README**
+
+# 0.0.5
+* Bug fixes, like loops and if statements being highlighted as functions.
+* Loops update syntax highlighting
+* Added missing highlighting for keywords like pass.
