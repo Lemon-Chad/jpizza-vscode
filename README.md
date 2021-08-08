@@ -13,7 +13,7 @@ A fast to type and easy to ship language for developers on the go!
 
 ## Resources
 - [Documentation](https://jpizza.rtfd.io) -> The good ol' docs
-- [JPizza](https://bit.ly/3xXW5ci) -> Download/update to the latest JPizza
+- [JPizza Windows Installer](https://bit.ly/3xXW5ci) -> Download/update to the latest JPizza
 - [Fridge](https://github.com/Lemon-Chad/frdge) -> A public package manager for posting your libraries and downloading others
 - [GitHub](github.com/Lemon-Chad/jpizza/) -> The open source GitHub repository
 - [JPX](https://bit.ly/jpx) -> Framework adding fun import features and helps you ship your app to other machines without the need for JPizza2
