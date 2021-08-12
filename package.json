@@ -3,7 +3,7 @@
     "publisher": "JacksonSmith",
     "displayName": "JPizza Language Support",
     "description": "Adds support for the JPizza2 programming language!",
-    "version": "0.0.6",
+    "version": "0.0.61",
     "icon": "dp256.png",
     "repository": {
         "type": "git",
