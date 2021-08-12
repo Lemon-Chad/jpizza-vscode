@@ -29,3 +29,7 @@
 # 0.0.55
 * WOAH! STRUCTS!!!
 * Updated **README**
+
+# 0.0.6
+* Bitwise operations and operators are now highlighted
+* Queries are now highlighted
