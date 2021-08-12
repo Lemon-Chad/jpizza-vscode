@@ -312,7 +312,7 @@
                     "name": "keyword.operator.comparison.jpizza"
                 },
                 {
-                    "match": "(&|\\||!)",
+                    "match": "(&|\\||!|~\\||~&|~\\^)",
                     "name": "keyword.operator.logical.jpizza"
                 },
                 {
@@ -320,7 +320,7 @@
                     "name": "keyword.operator.assignment.jpizza"
                 },
                 {
-                    "match": "(\\+|\\-|\\*|\/|%)",
+                    "match": "(\\+|\\-|\\*|/|%|@|\\$_|\\$|\\?|:|~|~>|~~|<~)",
                     "name": "keyword.operator.arithmetic.jpizza"
                 },
                 {
