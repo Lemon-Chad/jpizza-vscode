@@ -33,3 +33,8 @@
 # 0.0.6
 * Bitwise operations and operators are now highlighted
 * Queries are now highlighted
+
+# 0.0.7
+* Catcher functions now have highlights
+* Throw keyword highlighting
+

@@ -284,12 +284,12 @@
                     "comment": "Functions",
                     "begin": "((\\s|^)!\\s*(?=(<|->|{|\\=)))|(\\b(fn|function|method|ingredients)\\b(\\s(async|bin)\\b)*)",
                     "beginCaptures": [{"name": "keyword.control.jpizza"}],
-                    "end": "(?=(>|{|->|\\=))",
+                    "end": "(?=(>|\\[\\]|{|->|\\=))",
                     "patterns": [
                         {"include": "#space"},
                         {"include": "#comments"},
                         {
-                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<.+>)|(?=\\s*(->|{|\\=)))",
+                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<.+>)|(?=\\s*(->|{|\\=|\\[\\])))",
                             "name": "entity.name.function.jpizza"
                         },
                         {"include": "#func-args"},
@@ -298,7 +298,7 @@
                 },
 
                 {
-                    "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{))",
+                    "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{)|(?=\\s*\\[\\]))",
                     "name": "entity.name.function.jpizza"
                 }
             ]
@@ -347,7 +347,7 @@
             "patterns": [
                 {
                     "comment": "Flow control keywords",
-                    "match": "\\b(struct|this|recipe|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
+                    "match": "\\b(throw|struct|this|recipe|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
                     "name": "keyword.control.jpizza"
                 }
             ]
