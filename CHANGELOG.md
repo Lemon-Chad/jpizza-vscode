@@ -38,3 +38,6 @@
 * Catcher functions now have highlights
 * Throw keyword highlighting
 
+# 0.0.71
+* Enum keyword is highlighted
+
