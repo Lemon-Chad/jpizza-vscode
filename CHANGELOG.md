@@ -41,3 +41,6 @@
 # 0.0.71
 * Enum keyword is highlighted
 
+# 0.0.8
+* Format strings
+

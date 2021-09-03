@@ -15,6 +15,26 @@
             "patterns": [
                 {"include": "#comments"},
                 {
+                    "comment": "Format strings",
+                    "begin": "`",
+                    "beginCaptures": [{"name": "punctuation.definition.string.begin.jpizza"}],
+                    "end": "`",
+                    "endCaptures": [{"name": "punctuation.definition.string.end.jpiza"}],
+                    "name": "string.quoted.double.jpizza",
+                    "patterns": [
+                        {
+                            "begin": "(?<!!)\\${",
+                            "beginCaptures": [{"name": "keyword.operator.arithmetic.jpizza"}],
+                            "end": "}",
+                            "endCaptures": [{"name": "keyword.operator.arithmetic.jpizza"}],
+                            "patterns": [
+                                {"include": "#root"}
+                            ]
+                        },
+                        {"include": "#string_escaped_char"}
+                    ]
+                },
+                {
                     "comment": "Double quoted string",
                     "begin": "\"",
                     "beginCaptures": [{"name": "punctuation.definition.string.begin.jpizza"}],
