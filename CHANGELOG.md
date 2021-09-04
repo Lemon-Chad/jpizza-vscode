@@ -44,3 +44,6 @@
 # 0.0.8
 * Format strings
 
+# 0.0.82
+* Free keyword
+
