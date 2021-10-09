@@ -85,7 +85,12 @@
                 },
 
                 {
-                    "begin": "\\b(var|bake|attr)\\b",
+                    "match": "\\b(num|list|dict|void|bool)\\b",
+                    "name": "storage.type.jpizza"
+                },
+
+                {
+                    "begin": "\\b(var|bake|attr|let|const)\\b",
                     "beginCaptures": [{"name": "storage.type.jpizza"}],
                     "end": "=>|(?=;)",
                     "endCaptures": [{"name": "keyword.operator.assignment.jpizza"}],
@@ -95,8 +100,12 @@
                             "name": "variable.jpizza"
                         },
                         {
-                            "match": "#[a-zA-Z_]\\w*",
-                            "name": "punctuation.definition.comment.jpizza"
+                            "begin": "(#)(\\s*[a-zA-Z_]\\w*)",
+                            "beginCaptures": {
+                                "1": {"name": "keyword.operator.arithmetic.jpizza"},
+                                "2": {"patterns": [{"include": "#root"}]}
+                            },
+                            "end": "(?==>)|(?=;)"
                         }
                     ]
                 },
@@ -130,16 +139,16 @@
                     "match": ";",
                     "name": "punctuation.terminator.jpizza"
                 },
-                
-                {"include": "#brackets"},
-                {"include": "#delimiters"},
-                {"include": "#operators"},
-                
+
                 {
                     "begin": "#\\s*[a-zA-Z_0-9\\s]+",
                     "beginCaptures": [{"name": "keyword.control.jpizza"}],
                     "end": ";"
                 },
+
+                {"include": "#brackets"},
+                {"include": "#delimiters"},
+                {"include": "#operators"},
 
                 {
                     "match": "\\b[a-zA-Z_]\\w*\\b",
@@ -177,7 +186,7 @@
                     "comment": "Line comments",
                     "begin": "<>",
                     "beginCaptures": [{"name": "punctuation.definition.comment.jpizza"}],
-                    "end": "($|;)",
+                    "end": "($)",
                     "name": "comment.line.jpizza"
                 }
             ]
@@ -186,10 +195,11 @@
         "func-args": {
             "patterns": [
                 {
-                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#\\s*[a-zA-Z_]\\w*)|(\\s*))",
+                    "begin": "\\b([a-zA-Z_]\\w*)(?:\\s*(#)(\\s*[a-zA-Z_]\\w*)|(\\s*))",
                     "beginCaptures": {
                         "1": {"name": "variable.jpizza"},
-                        "2": {"name": "punctuation.definition.comment.jpizza"}
+                        "2": {"name": "keyword.operator.arithmetic.jpizza"},
+                        "3": {"patterns": [{"include": "#root"}]}
                     },
                     "end": "(?=[,>])",
                     "patterns": [
@@ -302,14 +312,14 @@
 
                 {
                     "comment": "Functions",
-                    "begin": "((\\s|^)!\\s*(?=(<|->|{|\\=)))|(\\b(fn|function|method|ingredients)\\b(\\s(async|bin)\\b)*)",
+                    "begin": "((\\s|^)!\\s*(?=(<|->|{|\\=)))|(\\b(fn|function|method|mthd|md|ingredients)\\b(\\s(async|bin|static|prv|pub|stc)\\b)*)",
                     "beginCaptures": [{"name": "keyword.control.jpizza"}],
                     "end": "(?=(>|\\[\\]|{|->|\\=))",
                     "patterns": [
                         {"include": "#space"},
                         {"include": "#comments"},
                         {
-                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<.+>)|(?=\\s*(->|{|\\=|\\[\\])))",
+                            "match": "\\b[a-zA-Z_]\\w*((?=\\s*<.+>)|(?=\\s*\\()|(?=\\s*(->|{|\\=|\\[\\])))",
                             "name": "entity.name.function.jpizza"
                         },
                         {"include": "#func-args"},
@@ -320,6 +330,11 @@
                 {
                     "match": "\\b[a-zA-Z_]\\w*((?=\\s*<[a-zA-Z0-9,\\s]+>)|(?=\\s*->)|(?=\\s*{)|(?=\\s*\\[\\]))",
                     "name": "entity.name.function.jpizza"
+                },
+
+                {
+                    "match": "\\b[A-Z][A-Za-z0-9_]*\\b",
+                    "name": "entity.name.type.jpizza"
                 }
             ]
         },
@@ -340,7 +355,7 @@
                     "name": "keyword.operator.assignment.jpizza"
                 },
                 {
-                    "match": "(\\+|\\-|\\*|/|%|@|\\$_|\\$|\\?|:|~|~>|~~|<~)",
+                    "match": "(\\+|\\-|\\*|/|%|@|\\$_|\\$|\\?|:|~|~>|~~|<~|\\.\\.|#)",
                     "name": "keyword.operator.arithmetic.jpizza"
                 },
                 {
@@ -367,8 +382,13 @@
             "patterns": [
                 {
                     "comment": "Flow control keywords",
-                    "match": "\\b(free|enum|throw|struct|this|recipe|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
+                    "match": "\\b(free|enum|throw|struct|this|recipe|obj|class|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
                     "name": "keyword.control.jpizza"
+                },
+
+                {
+                    "match": "\\b(pub|prv|static|stc|bin|async)",
+                    "name": "storage.modifier.access.jpizza"
                 }
             ]
         }
