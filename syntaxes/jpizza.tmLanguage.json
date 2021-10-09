@@ -382,7 +382,7 @@
             "patterns": [
                 {
                     "comment": "Flow control keywords",
-                    "match": "\\b(free|enum|throw|struct|this|recipe|obj|class|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
+                    "match": "\\b(scope|free|enum|throw|struct|this|recipe|obj|class|else|for|if|elif|return|import|break|continue|pass|do|loop|while|switch|match|case)\\b",
                     "name": "keyword.control.jpizza"
                 },
 
