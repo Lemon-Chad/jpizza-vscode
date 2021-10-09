@@ -48,7 +48,11 @@
 * Free keyword
 
 # 0.0.85
-* stuff.
+* Stuff.
 
 # 0.0.86
-* scopes!
+* Scopes!
+
+# 0.0.9
+
+* More keywords!
